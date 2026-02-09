@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 
 namespace MovieRental.Domain
 {
@@ -34,17 +35,23 @@ namespace MovieRental.Domain
                 int thisPoints = each.GetFrequentRenterPoints();
 
                 // show figures for this rental
-                result += "\t" + each.Movie.Title + "\t" + thisAmount.ToString() + "\n";
+                result += "\t" + each.Movie.Title + "\t" + FormatAmount(thisAmount) + "\n";
                 
                 totalAmount += thisAmount;
                 frequentRenterPoints += thisPoints;
             }
 
             // add footer lines
-            result += "Amount owed is " + totalAmount.ToString() + "\n";
+            result += "Amount owed is " + FormatAmount(totalAmount) + "\n";
             result += "You earned " + frequentRenterPoints.ToString() + " frequent renter points";
 
             return result;
+        }
+
+        private static string FormatAmount(decimal amount)
+        {
+            // Utilise la culture française (virgule comme séparateur)
+            return amount.ToString("0.#", CultureInfo.GetCultureInfo("fr-FR"));
         }
     }
 }
