@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MovieRental.Domain;
 
 namespace MovieRental.Tests
 {
@@ -16,7 +17,7 @@ namespace MovieRental.Tests
         public void TestAddRental()
         {
             Customer customer2 = new CustomerBuilder().withName("Julia").build();
-            Movie movie1 = new Movie("Gone with the Wind", Movie.REGULAR);
+            Movie movie1 = new Movie("Gone with the Wind", MovieCategory.Regular);
             Rental rental1 = new Rental(movie1, 3); // 3 day rental
             customer2.addRental(rental1);
         }
@@ -30,7 +31,7 @@ namespace MovieRental.Tests
         [TestMethod]
         public void StatementForRegularMovie()
         {
-            Movie movie1 = new Movie("Gone with the Wind", Movie.REGULAR);
+            Movie movie1 = new Movie("Gone with the Wind", MovieCategory.Regular);
             Rental rental1 = new Rental(movie1, 3); // 3 day rental
             Customer customer2 =
                     new CustomerBuilder()
@@ -48,7 +49,7 @@ namespace MovieRental.Tests
         [TestMethod]
         public void StatementForNewReleaseMovie()
         {
-            Movie movie1 = new Movie("Star Wars", Movie.NEW_RELEASE);
+            Movie movie1 = new Movie("Star Wars", MovieCategory.NewRelease);
             Rental rental1 = new Rental(movie1, 3); // 3 day rental
             Customer customer2 =
                     new CustomerBuilder()
@@ -66,7 +67,7 @@ namespace MovieRental.Tests
         [TestMethod]
         public void StatementForChildrensMovie()
         {
-            Movie movie1 = new Movie("Madagascar", Movie.CHILDRENS);
+            Movie movie1 = new Movie("Madagascar", MovieCategory.Childrens);
             Rental rental1 = new Rental(movie1, 3); // 3 day rental
             Customer customer2
                     = new CustomerBuilder()
@@ -84,11 +85,11 @@ namespace MovieRental.Tests
         [TestMethod]
         public void StatementForManyMovies()
         {
-            Movie movie1 = new Movie("Madagascar", Movie.CHILDRENS);
+            Movie movie1 = new Movie("Madagascar", MovieCategory.Childrens);
             Rental rental1 = new Rental(movie1, 6); // 6 day rental
-            Movie movie2 = new Movie("Star Wars", Movie.NEW_RELEASE);
+            Movie movie2 = new Movie("Star Wars", MovieCategory.NewRelease);
             Rental rental2 = new Rental(movie2, 2); // 2 day rental
-            Movie movie3 = new Movie("Gone with the Wind", Movie.REGULAR);
+            Movie movie3 = new Movie("Gone with the Wind", MovieCategory.Regular);
             Rental rental3 = new Rental(movie3, 8); // 8 day rental
             Customer customer1
                     = new CustomerBuilder()
@@ -104,8 +105,6 @@ namespace MovieRental.Tests
             string statement = customer1.statement();
             Assert.AreEqual(expected, statement);
         }
-
-        //TODO make test for price breaks in code.
     }
 
 }

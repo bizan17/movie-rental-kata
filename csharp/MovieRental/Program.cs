@@ -1,4 +1,5 @@
 using System;
+using MovieRental.Domain;
 
 namespace MovieRental
 {
@@ -9,9 +10,9 @@ namespace MovieRental
             Console.WriteLine("=== Movie Rental System ===\n");
 
             // Create films
-            var movie1 = new Movie("The Matrix", Movie.NEW_RELEASE);
-            var movie2 = new Movie("Toy Story", Movie.CHILDRENS);
-            var movie3 = new Movie("Casablanca", Movie.REGULAR);
+            var movie1 = new Movie("The Matrix", MovieCategory.NewRelease);
+            var movie2 = new Movie("Toy Story", MovieCategory.Childrens);
+            var movie3 = new Movie("Casablanca", MovieCategory.Regular);
 
             // Create rent
             var rental1 = new Rental(movie1, 3);
