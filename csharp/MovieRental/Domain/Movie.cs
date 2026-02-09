@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieRental.Pricing;
+using System;
 
 namespace MovieRental.Domain
 {
@@ -7,6 +8,8 @@ namespace MovieRental.Domain
     /// </summary>
     public class Movie
     {
+        private readonly IPricingStrategy _pricingStrategy;
+
         /// <summary>
         /// Gets the title of the movie.
         /// </summary>
@@ -30,6 +33,27 @@ namespace MovieRental.Domain
 
             Title = title;
             Category = category;
+            _pricingStrategy = PricingStrategyFactory.CreateStrategy(category);
+        }
+
+        /// <summary>
+        /// Calculates the rental amount for this movie.
+        /// </summary>
+        /// <param name="daysRented">The number of days the movie is rented.</param>
+        /// <returns>The calculated rental amount.</returns>
+        public decimal CalculateAmount(int daysRented)
+        {
+            return _pricingStrategy.CalculateAmount(daysRented);
+        }
+
+        /// <summary>
+        /// Calculates the frequent renter points for this rental.
+        /// </summary>
+        /// <param name="daysRented">The number of days the movie is rented.</param>
+        /// <returns>The number of frequent renter points earned.</returns>
+        public int CalculateFrequentRenterPoints(int daysRented)
+        {
+            return _pricingStrategy.CalculateFrequentRenterPoints(daysRented);
         }
     }
 }

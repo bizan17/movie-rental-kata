@@ -24,41 +24,20 @@ namespace MovieRental.Domain
 
         public string statement()
         {
-            double totalAmount = 0;
+            decimal totalAmount = 0;
             int frequentRenterPoints = 0;
             string result = "Rental Record for " + getName() + "\n";
 
             foreach (Rental each in _rentals)
             {
-                double thisAmount = 0;
-
-                //determine amounts for each line
-                switch (each.Movie.Category)
-                {
-                    case MovieCategory.Regular:
-                        thisAmount += 2;
-                        if (each.DaysRented > 2)
-                            thisAmount += (each.DaysRented - 2) * 1.5;
-                        break;
-                    case MovieCategory.NewRelease:
-                        thisAmount += each.DaysRented * 3;
-                        break;
-                    case MovieCategory.Childrens:
-                        thisAmount += 1.5;
-                        if (each.DaysRented > 3)
-                            thisAmount += (each.DaysRented - 3) * 1.5;
-                        break;
-                }
-
-                // add frequent renter points
-                frequentRenterPoints++;
-                // add bonus for a two day new release rental
-                if ((each.Movie.Category == MovieCategory.NewRelease) && each.DaysRented > 1)
-                    frequentRenterPoints++;
+                decimal thisAmount = each.GetAmount();
+                int thisPoints = each.GetFrequentRenterPoints();
 
                 // show figures for this rental
                 result += "\t" + each.Movie.Title + "\t" + thisAmount.ToString() + "\n";
+                
                 totalAmount += thisAmount;
+                frequentRenterPoints += thisPoints;
             }
 
             // add footer lines
