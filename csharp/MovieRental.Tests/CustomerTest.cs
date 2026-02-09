@@ -105,8 +105,6 @@ namespace MovieRental.Tests
             string statement = customer1.statement();
             Assert.AreEqual(expected, statement);
         }
-
-        //TODO make test for price breaks in code.
     }
 
 }
