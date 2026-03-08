@@ -10,11 +10,13 @@ namespace MovieRental.Pricing
         private const decimal DailyRate = 3m;
         private const int BonusPointsThreshold = 1;
 
+        /// <inheritdoc/>
         public decimal CalculateAmount(int daysRented)
         {
             return daysRented * DailyRate;
         }
 
+        /// <inheritdoc/>
         public int CalculateFrequentRenterPoints(int daysRented)
         {
             return daysRented > BonusPointsThreshold ? 2 : 1;

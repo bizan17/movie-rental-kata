@@ -1,6 +1,61 @@
-# VS Code
-.vscode/
-# Visual Studio
-.vs/
+# =========================
+
+# Environment variables
+
+# =========================
+
+.env
+
+# =========================
+
+# Claude Code
+
+# =========================
+
+.claude/local.json
+.claude/history
+
+# =========================
+
+# Spec Kit (optional)
+
+# =========================
+
+.specify/cache
+.specify/tmp
+
+# =========================
+
+# .NET / C#
+
+# =========================
+
 bin/
 obj/
+
+# Rider / VS / VSCode
+
+.vs/
+.vscode/
+.idea/
+
+# User files
+
+*.user
+*.suo
+*.userprefs
+
+# Build
+
+*.dll
+*.exe
+*.pdb
+
+# Logs
+
+*.log
+
+# OS files
+
+.DS_Store
+Thumbs.db

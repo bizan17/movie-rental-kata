@@ -8,16 +8,16 @@ namespace MovieRental.Domain
         /// <summary>
         /// Regular.
         /// </summary>
-        Regular = 0,
+        Regular,
 
         /// <summary>
         /// New release.
         /// </summary>
-        NewRelease = 1,
+        NewRelease,
 
         /// <summary>
         /// Children's movie.
         /// </summary>
-        Childrens = 2
+        Children
     }
 }

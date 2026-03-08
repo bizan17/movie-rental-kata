@@ -105,12 +105,12 @@ namespace MovieRental.Tests
 
         #endregion
 
-        #region Childrens Movie Price Breaks
+        #region Children Movie Price Breaks
 
         [TestMethod]
         public void ChildrensMovie_OneDay_Returns1Point5()
         {
-            var strategy = new ChildrensMoviePricing();
+            var strategy = new ChildrenMoviePricing();
             decimal amount = strategy.CalculateAmount(1);
             Assert.AreEqual(1.5m, amount, "1 day rental should cost base amount");
         }
@@ -118,7 +118,7 @@ namespace MovieRental.Tests
         [TestMethod]
         public void ChildrensMovie_ThreeDays_Returns1Point5()
         {
-            var strategy = new ChildrensMoviePricing();
+            var strategy = new ChildrenMoviePricing();
             decimal amount = strategy.CalculateAmount(3);
             Assert.AreEqual(1.5m, amount, "3 days rental should cost base amount (at threshold)");
         }
@@ -126,7 +126,7 @@ namespace MovieRental.Tests
         [TestMethod]
         public void ChildrensMovie_FourDays_Returns3()
         {
-            var strategy = new ChildrensMoviePricing();
+            var strategy = new ChildrenMoviePricing();
             decimal amount = strategy.CalculateAmount(4);
             Assert.AreEqual(3m, amount, "4 days rental should add 1 extra day charge");
         }
@@ -134,7 +134,7 @@ namespace MovieRental.Tests
         [TestMethod]
         public void ChildrensMovie_SixDays_Returns6()
         {
-            var strategy = new ChildrensMoviePricing();
+            var strategy = new ChildrenMoviePricing();
             decimal amount = strategy.CalculateAmount(6);
             Assert.AreEqual(6m, amount, "6 days rental should add 3 extra day charges");
         }
@@ -142,7 +142,7 @@ namespace MovieRental.Tests
         [TestMethod]
         public void ChildrensMovie_Points_AlwaysReturns1()
         {
-            var strategy = new ChildrensMoviePricing();
+            var strategy = new ChildrenMoviePricing();
             
             Assert.AreEqual(1, strategy.CalculateFrequentRenterPoints(1));
             Assert.AreEqual(1, strategy.CalculateFrequentRenterPoints(3));

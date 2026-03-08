@@ -1,57 +1,41 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
+using System.Collections.Generic;
 
 namespace MovieRental.Domain
 {
+    /// <summary>
+    /// Represents a customer who can rent movies.
+    /// </summary>
     public class Customer
     {
-        private string _name;
-        private List<Rental> _rentals = new List<Rental>();
+        private readonly string _name;
+        private readonly List<Rental> _rentals = new List<Rental>();
 
+        /// <summary>
+        /// Gets the name of the customer.
+        /// </summary>
+        public string Name => _name;
+
+        /// <summary>
+        /// Gets the rentals associated with this customer.
+        /// </summary>
+        public IReadOnlyList<Rental> Rentals => _rentals;
+
+        /// <summary>
+        /// Initializes a new instance of the Customer class.
+        /// </summary>
+        /// <param name="name">The name of the customer.</param>
         public Customer(string name)
         {
             _name = name;
         }
 
-        public void addRental(Rental arg)
+        /// <summary>
+        /// Adds a rental to the customer's list of rentals.
+        /// </summary>
+        /// <param name="rental">The rental to add.</param>
+        public void AddRental(Rental rental)
         {
-            _rentals.Add(arg);
-        }
-
-        public string getName()
-        {
-            return _name;
-        }
-
-        public string statement()
-        {
-            decimal totalAmount = 0;
-            int frequentRenterPoints = 0;
-            string result = "Rental Record for " + getName() + "\n";
-
-            foreach (Rental each in _rentals)
-            {
-                decimal thisAmount = each.GetAmount();
-                int thisPoints = each.GetFrequentRenterPoints();
-
-                // show figures for this rental
-                result += "\t" + each.Movie.Title + "\t" + FormatAmount(thisAmount) + "\n";
-                
-                totalAmount += thisAmount;
-                frequentRenterPoints += thisPoints;
-            }
-
-            // add footer lines
-            result += "Amount owed is " + FormatAmount(totalAmount) + "\n";
-            result += "You earned " + frequentRenterPoints.ToString() + " frequent renter points";
-
-            return result;
-        }
-
-        private static string FormatAmount(decimal amount)
-        {
-            // Utilise la culture française (virgule comme séparateur)
-            return amount.ToString("0.#", CultureInfo.GetCultureInfo("fr-FR"));
+            _rentals.Add(rental);
         }
     }
 }

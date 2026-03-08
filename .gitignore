@@ -1,10 +1,61 @@
-**/target
-**/*.iml
-**/*.eclipse
-**/.idea
-/csharp/MovieRental.Tests/bin/
-/csharp/MovieRental.Tests/obj/
-/csharp/MovieRental/.vs/
-/csharp/MovieRental/bin/
-/csharp/MovieRental/obj/
-/csharp/MovieRental/packages/
+# =========================
+
+# Environment variables
+
+# =========================
+
+.env
+
+# =========================
+
+# Claude Code
+
+# =========================
+
+.claude/local.json
+.claude/history
+
+# =========================
+
+# Spec Kit (optional)
+
+# =========================
+
+.specify/cache
+.specify/tmp
+
+# =========================
+
+# .NET / C#
+
+# =========================
+
+bin/
+obj/
+
+# Rider / VS / VSCode
+
+.vs/
+.vscode/
+.idea/
+
+# User files
+
+*.user
+*.suo
+*.userprefs
+
+# Build
+
+*.dll
+*.exe
+*.pdb
+
+# Logs
+
+*.log
+
+# OS files
+
+.DS_Store
+Thumbs.db
