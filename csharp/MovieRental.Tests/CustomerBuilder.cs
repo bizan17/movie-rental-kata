@@ -1,38 +1,52 @@
-﻿using System;
 using System.Collections.Generic;
 using MovieRental.Domain;
 
 namespace MovieRental.Tests
 {
+    /// <summary>
+    /// Builder for creating <see cref="Customer"/> instances in tests.
+    /// </summary>
     public class CustomerBuilder
     {
+        /// <summary>
+        /// The default customer name used when none is specified.
+        /// </summary>
+        public static readonly string Name = "Roberts";
 
-        public static readonly String NAME = "Roberts";
+        private string _name = Name;
+        private List<Rental> _rentals = new List<Rental>();
 
-    private String name = NAME;
-        private List<Rental> rentals = new List<Rental>();
-
-        public Customer build()
+        /// <summary>
+        /// Builds and returns a <see cref="Customer"/> with the configured name and rentals.
+        /// </summary>
+        public Customer Build()
         {
-            Customer result = new Customer(name);
-            foreach (Rental rental in rentals)
+            Customer result = new Customer(_name);
+            foreach (Rental rental in _rentals)
             {
-                result.addRental(rental);
+                result.AddRental(rental);
             }
             return result;
         }
 
-        public CustomerBuilder withName(String name)
+        /// <summary>
+        /// Sets the customer name.
+        /// </summary>
+        /// <param name="name">The name to assign.</param>
+        public CustomerBuilder WithName(string name)
         {
-            this.name = name;
+            _name = name;
             return this;
         }
 
-        public CustomerBuilder withRentals(params Rental[] rentals)
+        /// <summary>
+        /// Adds one or more rentals to the customer.
+        /// </summary>
+        /// <param name="rentals">The rentals to add.</param>
+        public CustomerBuilder WithRentals(params Rental[] rentals)
         {
-            this.rentals.AddRange(rentals);
+            _rentals.AddRange(rentals);
             return this;
         }
     }
-
 }

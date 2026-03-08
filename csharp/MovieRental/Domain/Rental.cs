@@ -37,21 +37,13 @@ namespace MovieRental.Domain
         }
 
         /// <summary>
-        /// Calculates the rental amount for this rental.
+        /// Gets the rental amount for this rental.
         /// </summary>
-        /// <returns>The calculated rental amount.</returns>
-        public decimal GetAmount()
-        {
-            return Movie.CalculateAmount(DaysRented);
-        }
+        public decimal Amount => Movie.CalculateAmount(DaysRented);
 
         /// <summary>
-        /// Calculates the frequent renter points earned for this rental.
+        /// Gets the frequent renter points earned for this rental.
         /// </summary>
-        /// <returns>The number of frequent renter points earned.</returns>
-        public int GetFrequentRenterPoints()
-        {
-            return Movie.CalculateFrequentRenterPoints(DaysRented);
-        }
+        public int FrequentRenterPoints => Movie.CalculateFrequentRenterPoints(DaysRented);
     }
 }

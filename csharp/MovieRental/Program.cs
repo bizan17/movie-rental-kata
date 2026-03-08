@@ -1,32 +1,30 @@
 using System;
 using MovieRental.Domain;
+using MovieRental.Services;
 
 namespace MovieRental
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("=== Movie Rental System ===\n");
 
-            // Create films
             var movie1 = new Movie("The Matrix", MovieCategory.NewRelease);
-            var movie2 = new Movie("Toy Story", MovieCategory.Childrens);
+            var movie2 = new Movie("Toy Story", MovieCategory.Children);
             var movie3 = new Movie("Casablanca", MovieCategory.Regular);
 
-            // Create rent
             var rental1 = new Rental(movie1, 3);
             var rental2 = new Rental(movie2, 5);
             var rental3 = new Rental(movie3, 2);
 
-            // Create client
             var customer = new Customer("John Doe");
-            customer.addRental(rental1);
-            customer.addRental(rental2);
-            customer.addRental(rental3);
+            customer.AddRental(rental1);
+            customer.AddRental(rental2);
+            customer.AddRental(rental3);
 
-            // display statement
-            string statement = customer.statement();
+            var statementService = new RentalStatementService();
+            string statement = statementService.GenerateStatement(customer);
             Console.WriteLine(statement);
         }
     }

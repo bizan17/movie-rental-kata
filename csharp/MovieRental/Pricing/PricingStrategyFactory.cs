@@ -6,7 +6,7 @@ namespace MovieRental.Pricing
     /// <summary>
     /// Factory for creating pricing strategies based on movie category.
     /// </summary>
-    public class PricingStrategyFactory
+    public static class PricingStrategyFactory
     {
         /// <summary>
         /// Creates the appropriate pricing strategy for the given movie category.
@@ -20,7 +20,7 @@ namespace MovieRental.Pricing
             {
                 MovieCategory.Regular => new RegularMoviePricing(),
                 MovieCategory.NewRelease => new NewReleasePricing(),
-                MovieCategory.Childrens => new ChildrensMoviePricing(),
+                MovieCategory.Children => new ChildrenMoviePricing(),
                 _ => throw new ArgumentException($"Unknown movie category: {category}", nameof(category))
             };
         }

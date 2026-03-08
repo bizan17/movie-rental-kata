@@ -10,18 +10,20 @@ namespace MovieRental.Pricing
         private const int FreeDays = 2;
         private const decimal AdditionalDayRate = 1.5m;
 
+        /// <inheritdoc/>
         public decimal CalculateAmount(int daysRented)
         {
             var amount = BaseAmount;
-            
+
             if (daysRented > FreeDays)
             {
                 amount += (daysRented - FreeDays) * AdditionalDayRate;
             }
-            
+
             return amount;
         }
 
+        /// <inheritdoc/>
         public int CalculateFrequentRenterPoints(int daysRented)
         {
             return 1;

@@ -18,7 +18,7 @@ namespace MovieRental.Domain
         /// <summary>
         /// Gets the category of the movie.
         /// </summary>
-        public MovieCategory Category { get; private set; }
+        public MovieCategory Category { get; }
 
         /// <summary>
         /// Initializes a new instance of the Movie class.
